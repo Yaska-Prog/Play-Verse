@@ -27,6 +27,31 @@ val pottaTypography = Typography(
         fontFamily = potta,
         fontWeight = FontWeight.W600,
         fontSize = 15.sp
+    ),
+    bodySmall = TextStyle(
+        fontFamily = potta,
+        fontWeight = FontWeight.W600,
+        fontSize = 10.sp
+    ),
+    labelSmall = TextStyle(
+        fontFamily = potta,
+        fontWeight = FontWeight.W600,
+        fontSize = 8.sp
+    ),
+    displayLarge = TextStyle(
+        fontFamily = potta,
+        fontWeight = FontWeight.W600,
+        fontSize = 12.sp
+    ),
+    displaySmall = TextStyle(
+        fontFamily = potta,
+        fontWeight = FontWeight.W600,
+        fontSize = 8.sp
+    ),
+    displayMedium = TextStyle(
+        fontFamily = potta,
+        fontWeight = FontWeight.W600,
+        fontSize = 9.sp
     )
 )
 val Typography = Typography(
