@@ -1,5 +1,6 @@
 package com.example.playverse.ui.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -26,13 +27,14 @@ fun TopAppBar(
 ) {
     Box(modifier = modifier
         .fillMaxWidth()
-        .height(70.dp),
+        .height(70.dp)
+        .background(color = Color.Black),
     contentAlignment = Alignment.Center){
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            Icon(imageVector = ImageVector.vectorResource(id = R.drawable.logo), contentDescription = "Logo", modifier = modifier.size(40.dp), tint = Color.Unspecified)
+            Icon(imageVector = ImageVector.vectorResource(id = R.drawable.logo), contentDescription = "Logo", modifier = modifier.size(50.dp), tint = Color.Unspecified)
             Text(
                 text = "PlayVerse",
                 style = MaterialTheme.typography.titleLarge,

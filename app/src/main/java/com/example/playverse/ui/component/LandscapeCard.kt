@@ -1,6 +1,7 @@
 package com.example.playverse.ui.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,21 +34,39 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.playverse.R
+import com.example.playverse.ui.screen.HomeScreen.LandscapeCardContent
 import com.example.playverse.ui.theme.PlayVerseTheme
 
 @Composable
 fun LandscapeCard(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    content: LandscapeCardContent,
+    navigateToDetail: (Int) -> Unit
 ) {
+    var totalStar = 1
+    if(content.rating >= 80 && content.rating < 100){
+        totalStar = 4
+    }
+    else if(content.rating < 80 && content.rating > 50){
+        totalStar = 3
+    }
+    else if(content.rating <= 50 && content.rating >= 30){
+        totalStar = 2
+    }
+
     Box(modifier = modifier
-        .height(193.dp)
-        .width(300.dp)
-        .clip(RoundedCornerShape(15.dp))){
+        .height(200.dp)
+        .width(350.dp)
+        .clip(RoundedCornerShape(15.dp))
+        .clickable { navigateToDetail(0) }){
         AsyncImage(
-            model = "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
+            model = content.image,
             contentDescription = "Grand Theft Auto",
-            modifier = modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            modifier = modifier
+                .height(200.dp)
+                .width(350.dp)
+                .clip(RoundedCornerShape(15.dp)),
+            contentScale = ContentScale.Fit
         )
         Box(
             contentAlignment = Alignment.Center,
@@ -62,19 +81,28 @@ fun LandscapeCard(
         ){
             Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = modifier.padding(start = 8.dp, top = 2.dp)) {
                 Column() {
-                    Text(text = "The Witcher 3: Wild Hunt", style = MaterialTheme.typography.bodySmall, color = Color(android.graphics.Color.parseColor("#E7698E")))
-                    Text(text = "18 May 2015", style = MaterialTheme.typography.displaySmall, color = Color(android.graphics.Color.parseColor("#E7698E")))
+                    Text(text = content.title, style = MaterialTheme.typography.bodySmall, color = Color(android.graphics.Color.parseColor("#E7698E")))
+                    Text(text = content.date, style = MaterialTheme.typography.displaySmall, color = Color(android.graphics.Color.parseColor("#E7698E")))
                 }
-                Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center){
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
-                        Text(text = "99", style = MaterialTheme.typography.displayLarge, color = Color(android.graphics.Color.parseColor("#DB00FF")))
+                Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.CenterEnd){
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp), modifier = modifier.padding(end = 10.dp)) {
+                        Text(text = content.rating.toString(), style = MaterialTheme.typography.displayLarge, color = Color(android.graphics.Color.parseColor("#DB00FF")))
                         Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
                             repeat(5){
-                                Icon(
-                                    imageVector = ImageVector.vectorResource(id = R.drawable.baseline_star_outline_24),
-                                    contentDescription = "Star Filled",
-                                    tint = Color(android.graphics.Color.parseColor("#DB00FF")),
-                                    modifier = modifier.size(15.dp))
+                                if(it < totalStar){
+                                    Icon(
+                                        imageVector = ImageVector.vectorResource(id = R.drawable.baseline_star_filled_24),
+                                        contentDescription = "Star Filled",
+                                        tint = Color(android.graphics.Color.parseColor("#DB00FF")),
+                                        modifier = modifier.size(15.dp))
+                                }
+                                else{
+                                    Icon(
+                                        imageVector = ImageVector.vectorResource(id = R.drawable.baseline_star_outline_24),
+                                        contentDescription = "Star Filled",
+                                        tint = Color(android.graphics.Color.parseColor("#DB00FF")),
+                                        modifier = modifier.size(15.dp))
+                                }
                             }
                         }
                     }
@@ -89,7 +117,7 @@ fun LandscapeCard(
 fun LandscapeCardPreview() {
     PlayVerseTheme {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter){
-            LandscapeCard()
+//            LandscapeCard()
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.playverse.ui.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -12,17 +13,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.playverse.ui.screen.HomeScreen.LandscapeCardContent
 import com.example.playverse.ui.theme.PlayVerseTheme
 
 @Composable
 fun PortraitCard(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    content: LandscapeCardContent,
+    navigateToDetail: (Int) -> Unit
 ) {
+    val rating = content.rating.toFloat() / 100f
     Box(modifier = modifier
         .height(234.dp)
-        .width(135.dp)){
+        .width(135.dp)
+        .clickable { navigateToDetail(0) }){
         AsyncImage(
-            model = "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
+            model = content.image,
             contentDescription = "Grand Theft Auto",
             modifier = modifier.fillMaxSize()
         )
@@ -30,7 +36,7 @@ fun PortraitCard(
             .fillMaxSize()
             .background(color = Color.Black.copy(0.2f)),
         contentAlignment = Alignment.TopEnd){
-            CircularProgressBar(percentage = 0.8f, number = 100)
+            CircularProgressBar(percentage = rating.toFloat(), number = 100)
         }
     }
 }
@@ -39,6 +45,6 @@ fun PortraitCard(
 @Composable
 fun PortraitCardPreview() {
     PlayVerseTheme {
-        PortraitCard()
+//        PortraitCard()
     }
 }

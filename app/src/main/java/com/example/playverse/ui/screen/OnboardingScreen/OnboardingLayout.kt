@@ -48,7 +48,6 @@ fun OnboardingLayout(
     pagerState: PagerState,
     modifier: Modifier = Modifier
 ) {
-    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.animation_lk6k47pc))
     HorizontalPager(state = pagerState) {page ->
         Box(modifier = modifier.fillMaxWidth()){
             Column(
