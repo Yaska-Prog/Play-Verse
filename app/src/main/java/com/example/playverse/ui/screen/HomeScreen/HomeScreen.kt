@@ -95,7 +95,7 @@ fun HomeScreen(
         is Output.Loading -> {
             Box(
                 contentAlignment = Alignment.Center,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize().background(color = Color.Black)
             ) {
                 CircularProgressIndicator(
                     color = Color.Blue,

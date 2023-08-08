@@ -11,19 +11,14 @@ import java.lang.Exception
 class RemoteDataSource(val apiService: ApiService) {
     suspend fun getAllGameData(): Flow<Output<List<ResultsItem>>>{
         return flow {
-            try {
-                emit(Output.Loading())
-                val client = apiService.getAllGames()
-                if(client.isSuccessful){
-                    val responseBody = client.body()
-                    val result = responseBody?.results
-                    emit(Output.Success(result) as Output<List<ResultsItem>>)
-                }
-                else{
-                    emit(Output.Error("Retrofit gagal!"))
-                }
-            } catch (e: Exception){
-                emit(Output.Error("Retrofit Gagal!"))
+            val client = apiService.getAllGames()
+            if(client.isSuccessful){
+                val responseBody = client.body()
+                val result = responseBody?.results
+                emit(Output.Success(result) as Output<List<ResultsItem>>)
+            }
+            else{
+                emit(Output.Error("Retrofit gagal!"))
             }
         }
     }

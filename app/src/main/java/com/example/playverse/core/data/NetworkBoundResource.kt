@@ -13,10 +13,10 @@ abstract class NetworkBoundResource<ResultType, RequestType>{
         emit(Output.Loading())
         val dbSource = loadFromDB().first()
         if (shouldFetch(dbSource)){
-            emit(Output.Loading())
             when(val result = createCall().first()){
                 is Output.Success -> {
-                    saveCallResult(result.data as RequestType)
+                    saveCallResult(result.data!!)
+                    emit(Output.Success(loadFromDB().first()))
                 }
                 is Output.Error -> {
                     onFetchFailed()

@@ -9,7 +9,6 @@ import org.jetbrains.annotations.NonNls
 @Entity(tableName = "Game")
 data class GameEntity(
     @PrimaryKey(autoGenerate = false)
-    @NonNull
     @ColumnInfo(name = "id_game")
     val id_game: Int,
 

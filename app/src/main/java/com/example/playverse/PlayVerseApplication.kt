@@ -18,13 +18,11 @@ class PlayVerseApplication: Application() {
             androidLogger(Level.NONE)
             androidContext(this@PlayVerseApplication)
             modules(
-                listOf(
-                    databaseModule,
-                    networkModule,
-                    repositoryModule,
-                    usecaseModule,
-                    viewmodelModule
-                )
+                databaseModule,
+                networkModule,
+                repositoryModule,
+                usecaseModule,
+                viewmodelModule
             )
         }
     }

@@ -1,5 +1,6 @@
 package com.example.playverse.core.data.local.room
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -7,6 +8,7 @@ import androidx.room.Update
 import com.example.playverse.core.data.local.entity.GameEntity
 import kotlinx.coroutines.flow.Flow
 
+@Dao
 interface GameDao {
     @Query("SELECT * FROM Game")
     fun getAllGame(): Flow<List<GameEntity>>

@@ -13,5 +13,5 @@ val usecaseModule = module {
 }
 
 val viewmodelModule = module {
-    viewModelOf(::HomeViewmodel)
+    viewModel<HomeViewmodel>{HomeViewmodel(get())}
 }

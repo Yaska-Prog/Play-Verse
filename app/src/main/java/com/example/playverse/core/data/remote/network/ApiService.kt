@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("games")
-    suspend fun getAllGames(): Response<GameResponse>
+    suspend fun getAllGames(@Query("key") key: String = "09106fd37e844773a754c15059fa50e4"): Response<GameResponse>
 
     @GET("games/{id}")
     suspend fun getDetailGame(
