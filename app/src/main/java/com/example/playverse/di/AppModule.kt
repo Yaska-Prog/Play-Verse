@@ -2,7 +2,9 @@ package com.example.playverse.di
 
 import com.example.playverse.core.domain.usecase.GameDataUseCase
 import com.example.playverse.core.domain.usecase.GameInteractor
+import com.example.playverse.ui.screen.DetailScreen.DetailViewModel
 import com.example.playverse.ui.screen.HomeScreen.HomeViewmodel
+import com.example.playverse.ui.screen.SearchScreen.SearchViewModel
 import org.koin.androidx.compose.get
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -14,4 +16,6 @@ val usecaseModule = module {
 
 val viewmodelModule = module {
     viewModel<HomeViewmodel>{HomeViewmodel(get())}
+    viewModel<DetailViewModel>{DetailViewModel(get())}
+    viewModel<SearchViewModel>{SearchViewModel(get())}
 }

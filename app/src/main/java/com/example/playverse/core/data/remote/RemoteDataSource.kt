@@ -25,18 +25,26 @@ class RemoteDataSource(val apiService: ApiService) {
 
     suspend fun getDetailGameData(id: Int): Flow<Output<DetailGameResponse>>{
         return flow {
-            try {
-                emit(Output.Loading())
-                val client = apiService.getDetailGame(id)
-                if(client.isSuccessful){
-                    val responseBody = client.body()
-                    emit(Output.Success(responseBody) as Output<DetailGameResponse>)
-                }
-                else{
-                    emit(Output.Error("Retrofit gagal!"))
-                }
-            } catch (e: Exception){
-                emit(Output.Error("Retrofit Gagal!"))
+            val client = apiService.getDetailGame(id)
+            if(client.isSuccessful){
+                val responseBody = client.body()
+                emit(Output.Success(responseBody) as Output<DetailGameResponse>)
+            }
+            else{
+                emit(Output.Error("Retrofit gagal!"))
+            }
+        }
+    }
+
+    suspend fun getSearchGame(input: String): Flow<Output<List<ResultsItem>>>{
+        return flow{
+            val client = apiService.getSearchedGame(input)
+            if(client.isSuccessful){
+                val responseBody = client.body()
+                emit(Output.Success(responseBody?.results) as Output<List<ResultsItem>>)
+            }
+            else{
+                emit(Output.Error("Retrofit gagal!"))
             }
         }
     }

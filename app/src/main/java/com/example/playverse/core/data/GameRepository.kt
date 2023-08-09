@@ -1,5 +1,6 @@
 package com.example.playverse.core.data
 
+import android.util.Log
 import com.example.playverse.core.data.local.LocalDataSource
 import com.example.playverse.core.data.remote.RemoteDataSource
 import com.example.playverse.core.data.remote.response.DetailGameResponse
@@ -52,33 +53,36 @@ class GameRepository(
 
             override suspend fun saveCallResult(data: DetailGameResponse) {
                 val game = DataMapper.mapResponsesToDetailEntities(data)
+                localDataSource.updateGame(game)
             }
 
             override fun shouldFetch(data: DetailGameEntity?): Boolean {
-                return data == null
+                return data?.platform == null
             }
-
         }.asFlow()
 
     override fun getSearchData(word: String): Flow<Output<List<GeneralGameEntity>>> =
         object : NetworkBoundResource<List<GeneralGameEntity>, List<ResultsItem>>() {
             override fun loadFromDB(): Flow<List<GeneralGameEntity>> {
-                return localDataSource.getAllGame().map {
+                return localDataSource.searchGame(word).map {
+                    Log.d("SearchQuery", word)
                     DataMapper.mapGeneralEntitiesToDomain(it)
                 }
             }
 
             override suspend fun createCall(): Flow<Output<List<ResultsItem>>> {
-                return remoteDataSource.getAllGameData()
+                Log.d("CreateCall", word)
+                return remoteDataSource.getSearchGame(word)
             }
 
             override suspend fun saveCallResult(data: List<ResultsItem>) {
                 val gameList = DataMapper.mapResponsesToEntities(data)
+                Log.d("SaveCall", word)
                 localDataSource.insertGameList(gameList)
             }
 
             override fun shouldFetch(data: List<GeneralGameEntity>?): Boolean {
-                return data.isNullOrEmpty()
+                return word != ""
             }
         }.asFlow()
 }

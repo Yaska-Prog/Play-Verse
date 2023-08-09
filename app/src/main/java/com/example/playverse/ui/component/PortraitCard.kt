@@ -13,20 +13,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.playverse.core.domain.model.GeneralGameEntity
 import com.example.playverse.ui.screen.HomeScreen.LandscapeCardContent
 import com.example.playverse.ui.theme.PlayVerseTheme
 
 @Composable
 fun PortraitCard(
     modifier: Modifier = Modifier,
-    content: LandscapeCardContent,
+    content: GeneralGameEntity,
     navigateToDetail: (Int) -> Unit
 ) {
-    val rating = content.rating.toFloat() / 100f
+    val rating = content.metacritic?.div(100f)
     Box(modifier = modifier
         .height(234.dp)
         .width(135.dp)
-        .clickable { navigateToDetail(0) }){
+        .clickable { navigateToDetail(content.id) }){
         AsyncImage(
             model = content.image,
             contentDescription = "Grand Theft Auto",
@@ -36,7 +37,7 @@ fun PortraitCard(
             .fillMaxSize()
             .background(color = Color.Black.copy(0.2f)),
         contentAlignment = Alignment.TopEnd){
-            CircularProgressBar(percentage = rating.toFloat(), number = 100)
+            CircularProgressBar(percentage = rating!!.toFloat(), number = 100)
         }
     }
 }

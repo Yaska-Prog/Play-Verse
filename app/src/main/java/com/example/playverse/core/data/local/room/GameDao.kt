@@ -24,4 +24,7 @@ interface GameDao {
 
     @Update
     fun updateGame(game: GameEntity)
+
+    @Query("SELECT * FROM game WHERE title LIKE :title")
+    fun getSearchedGame(title: String): Flow<List<GameEntity>>
 }

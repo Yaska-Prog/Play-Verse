@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,6 +18,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.playverse.ui.component.BottomNavigationBar
@@ -32,6 +34,8 @@ fun PlayVerseApp(
     navController: NavHostController = rememberNavController(),
     modifier: Modifier = Modifier
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
     Scaffold(
         topBar = { TopAppBar()}
     ) { innerPadding ->
@@ -52,13 +56,15 @@ fun PlayVerseApp(
             }
             composable(route = Navigation.Detail.route, arguments = listOf(navArgument("id"){type = NavType.IntType})){
                 val id = it.arguments?.getInt("id")?: 0
-                DetailScreen()
+                DetailScreen(id = id)
             }
         }
         Box(modifier = modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.96f), contentAlignment = Alignment.BottomCenter){
-            BottomNavigationBar(navController = navController)
+            .fillMaxHeight(0.96f), contentAlignment = Alignment.BottomCenter) {
+            if (currentRoute.toString() != Navigation.Detail.route) {
+                BottomNavigationBar(navController = navController)
+            }
         }
     }
 }

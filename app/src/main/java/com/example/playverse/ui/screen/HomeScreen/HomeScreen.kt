@@ -59,38 +59,6 @@ fun HomeScreen(
     val scrollState = rememberScrollState()
     val pagerState = rememberPagerState()
     val scope = rememberCoroutineScope()
-    val list = listOf<LandscapeCardContent>(
-        LandscapeCardContent(
-            image = "https://i.etsystatic.com/13367669/r/il/013579/3107621028/il_570xN.3107621028_hfi8.jpg",
-            title = "grand-theft-auto-v",
-            date = "2013-09-17",
-            rating = 50
-        ),
-        LandscapeCardContent(
-            image = "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
-            title = "grand-theft-auto-v",
-            date = "2013-09-17",
-            rating = 80
-        ),
-        LandscapeCardContent(
-            image = "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
-            title = "grand-theft-auto-v",
-            date = "2013-09-17",
-            rating = 50
-        ),
-        LandscapeCardContent(
-            image = "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
-            title = "grand-theft-auto-v",
-            date = "2013-09-17",
-            rating = 50
-        ),
-        LandscapeCardContent(
-            image = "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
-            title = "grand-theft-auto-v",
-            date = "2013-09-17",
-            rating = 50
-        )
-    )
     when(output){
         is Output.Loading -> {
             Box(
@@ -106,12 +74,15 @@ fun HomeScreen(
         }
         is Output.Success -> {
             val gameList = (output as Output.Success<List<GeneralGameEntity>>).data
+            val top = gameList!!.slice(0..2)
+            val trending = gameList.slice(2 until 10)
+            val nostalgia = gameList.slice(10 until gameList.size)
             Column(modifier = modifier
                 .background(color = Color.Black)
                 .verticalScroll(scrollState)){
                 Spacer(modifier = modifier.height(30.dp))
-                HorizontalPager(pageCount = list.size, state = pagerState) {
-                    LandscapeCard(content = list[it], navigateToDetail = navigateToDetail)
+                HorizontalPager(pageCount = top.size, state = pagerState) {
+                    LandscapeCard(content = top[it], navigateToDetail = navigateToDetail)
                 }
                 Box(modifier = modifier
                     .fillMaxWidth()
@@ -145,23 +116,22 @@ fun HomeScreen(
                 }
                 Text(text = "Trending", style = MaterialTheme.typography.titleLarge, color = Color.White, modifier = modifier.padding(bottom = 10.dp))
                 LazyRow(){
-                    items(list.count()){index ->
+                    items(trending.count()){index ->
                         Spacer(modifier = modifier.width(5.dp))
-                        PortraitCard(content = list[index], navigateToDetail = navigateToDetail)
+                        PortraitCard(content = trending[index], navigateToDetail = navigateToDetail)
                     }
                 }
                 Text(text = "Nostalgia", style = MaterialTheme.typography.titleLarge, color = Color.White, modifier = modifier.padding(bottom = 10.dp))
                 LazyRow(){
-                    items(list.count()){index ->
+                    items(nostalgia.count()){index ->
                         Spacer(modifier = modifier.width(5.dp))
-                        PortraitCard(content = list[index], navigateToDetail = navigateToDetail)
+                        PortraitCard(content = nostalgia[index], navigateToDetail = navigateToDetail)
                     }
                 }
             }
         }
         is Output.Idle -> {
             homeViewModel.getGameData()
-            val samting = ""
         }
         is Output.Error -> {
 

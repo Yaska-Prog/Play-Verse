@@ -12,10 +12,11 @@ object DataMapper {
         input.map {
             val game = GameEntity(
                 id_game = it.id as Int,
-                rating = it.rating as Double,
-                title = it.slug as String,
-                backgroundImage = it.backgroundImage as String,
-                released = it.released as String
+                rating = (it.rating as Double),
+                title = (it.name ?: ""),
+                backgroundImage = (it.backgroundImage ?: ""),
+                released = (it.released ?: ""),
+                metascore = (it.metacritic ?: (it.rating * 20.0).toInt())
             )
             gameList.add(game)
         }
@@ -25,10 +26,12 @@ object DataMapper {
     fun mapGeneralEntitiesToDomain(input: List<GameEntity>): List<GeneralGameEntity> =
         input.map {
             GeneralGameEntity(
+                id = it.id_game,
                 image = it.backgroundImage,
                 title = it.title,
                 rating = it.rating,
-                releaseDate = it.released
+                releaseDate = it.released,
+                metacritic = (it.metascore ?: (it.rating * 20.0).toInt())
             )
         }
 
@@ -36,11 +39,11 @@ object DataMapper {
         val game = DetailGameEntity(
             image = input.backgroundImage,
             title = input.title,
-            metaScore = input.metascore as Int,
-            description = input.description as String,
-            genre = input.genre as String,
-            platform = input.platform as String,
-            publishers = input.publishers as String
+            metaScore = (input.metascore ?: (input.rating * 20.0).toInt()),
+            description = input.description,
+            genre = input.genre,
+            platform = input.platform,
+            publishers = input.publishers
         )
         return game
     }
@@ -56,19 +59,19 @@ object DataMapper {
             publishers += "${it?.name}, "
         }
         input.platforms?.map {
-            platform += "${it?.platform}, "
+            platform += "${it?.platform?.name}, "
         }
         val game = GameEntity(
             id_game = input.id as Int,
             rating = input.rating as Double,
-            title = input.slug as String,
-            backgroundImage = input.backgroundImage as String,
-            released = input.released as String,
+            title = (input.name ?: ""),
+            backgroundImage = (input.backgroundImage ?: ""),
+            released = (input.released ?: ""),
             publishers = publishers,
             platform = platform,
             genre = genre,
             description = input.descriptionRaw,
-            metascore = input.metacritic
+            metascore = (input.metacritic ?: (input.rating * 20.0).toInt())
         )
         return game
     }

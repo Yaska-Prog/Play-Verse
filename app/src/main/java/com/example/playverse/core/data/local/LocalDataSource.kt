@@ -11,4 +11,8 @@ class LocalDataSource(val gameDao: GameDao) {
     fun insertGameList(game: List<GameEntity>) = gameDao.insertGameList(game)
 
     fun getDetailGame(id: Int): Flow<GameEntity> = gameDao.getDetailGame(id = id)
+
+    fun updateGame(game: GameEntity) = gameDao.updateGame(game)
+
+    fun searchGame(title: String) = gameDao.getSearchedGame(title)
 }

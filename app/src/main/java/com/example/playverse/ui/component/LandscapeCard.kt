@@ -34,13 +34,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.playverse.R
+import com.example.playverse.core.domain.model.GeneralGameEntity
 import com.example.playverse.ui.screen.HomeScreen.LandscapeCardContent
 import com.example.playverse.ui.theme.PlayVerseTheme
 
 @Composable
 fun LandscapeCard(
     modifier: Modifier = Modifier,
-    content: LandscapeCardContent,
+    content: GeneralGameEntity,
     navigateToDetail: (Int) -> Unit
 ) {
     var totalStar = 1
@@ -50,7 +51,7 @@ fun LandscapeCard(
     else if(content.rating < 80 && content.rating > 50){
         totalStar = 3
     }
-    else if(content.rating <= 50 && content.rating >= 30){
+    else if(content.rating in 30.0..50.0){
         totalStar = 2
     }
 
@@ -58,7 +59,7 @@ fun LandscapeCard(
         .height(200.dp)
         .width(350.dp)
         .clip(RoundedCornerShape(15.dp))
-        .clickable { navigateToDetail(0) }){
+        .clickable { navigateToDetail(content.id) }){
         AsyncImage(
             model = content.image,
             contentDescription = "Grand Theft Auto",
@@ -82,7 +83,7 @@ fun LandscapeCard(
             Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = modifier.padding(start = 8.dp, top = 2.dp)) {
                 Column() {
                     Text(text = content.title, style = MaterialTheme.typography.bodySmall, color = Color(android.graphics.Color.parseColor("#E7698E")))
-                    Text(text = content.date, style = MaterialTheme.typography.displaySmall, color = Color(android.graphics.Color.parseColor("#E7698E")))
+                    Text(text = content.releaseDate, style = MaterialTheme.typography.displaySmall, color = Color(android.graphics.Color.parseColor("#E7698E")))
                 }
                 Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.CenterEnd){
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp), modifier = modifier.padding(end = 10.dp)) {

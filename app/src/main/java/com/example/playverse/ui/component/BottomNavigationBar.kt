@@ -54,17 +54,18 @@ fun BottomNavigationBar(
         NavigationBarItem(ImageVector.vectorResource(id = R.drawable.home_vector), "Home", Navigation.Home.route),
         NavigationBarItem(Icons.Outlined.Search, "Search", Navigation.Search.route)
     )
-    Cloudy(radius = 20) {
+    Cloudy(radius = 25) {
         Box(modifier = modifier
             .width(260.dp)
             .height(50.dp)
-            .background(Color.White.copy(alpha = 0.28f))){
+            .background(Color.Black.copy(alpha = 0.28f))){
+
         }
     }
     Box(modifier = modifier
         .width(260.dp)
         .height(50.dp)
-        .background(color = Color.Transparent)){
+        .background(color = Color.Unspecified)){
         Row(modifier = modifier
             .fillMaxSize()
             .padding(top = 2.dp, bottom = 2.dp), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
