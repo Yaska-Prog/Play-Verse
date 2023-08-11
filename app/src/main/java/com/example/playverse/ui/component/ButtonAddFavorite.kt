@@ -20,6 +20,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,10 +36,21 @@ import com.example.playverse.ui.theme.PlayVerseTheme
 
 @Composable
 fun ButtonAddFavorite(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+    favorited: Int
 ) {
+    var text by remember {
+        mutableStateOf("")
+    }
+    if(favorited == 0){
+        text = "Add To Favorite"
+    }
+    else{
+        text = "Remove Favorited"
+    }
     OutlinedButton(
-        onClick = { /*TODO*/ },
+        onClick = onClick,
         modifier = modifier
             .width(104.dp)
             .height(37.dp)
@@ -52,7 +67,7 @@ fun ButtonAddFavorite(
         ) {
             Icon(imageVector = ImageVector.vectorResource(id = R.drawable.favorite_vector), contentDescription = "Favorite Vector", modifier = modifier.size(17.dp), tint = Color.Unspecified)
             Spacer(modifier = modifier.width(3.dp))
-            Text(text = "Add to Favorite", style = MaterialTheme.typography.labelSmall, color = Color.White)
+            Text(text = text, style = MaterialTheme.typography.labelSmall, color = Color.White)
         }
     }
 }
@@ -64,7 +79,7 @@ fun ButtonAddFavoritePreview() {
         Box(modifier = Modifier
             .fillMaxSize()
             .background(color = Color.Black)){
-            ButtonAddFavorite()
+//            ButtonAddFavorite()
         }
     }
 }

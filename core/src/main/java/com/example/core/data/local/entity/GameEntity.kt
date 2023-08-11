@@ -37,5 +37,8 @@ data class GameEntity(
     val publishers: String? = null,
 
     @ColumnInfo(name = "description")
-    val description: String? = null
+    val description: String? = null,
+
+    @ColumnInfo(name = "favorited")
+    val favorite: Int = 0
 )

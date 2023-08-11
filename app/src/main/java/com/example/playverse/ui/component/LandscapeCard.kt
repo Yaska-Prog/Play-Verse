@@ -45,13 +45,13 @@ fun LandscapeCard(
     navigateToDetail: (Int) -> Unit
 ) {
     var totalStar = 1
-    if(content.rating >= 80 && content.rating < 100){
+    if(content.metacritic >= 80 && content.metacritic < 100){
         totalStar = 4
     }
-    else if(content.rating < 80 && content.rating > 50){
+    else if(content.metacritic < 80 && content.metacritic > 50){
         totalStar = 3
     }
-    else if(content.rating in 30.0..50.0){
+    else if(content.metacritic in 30..50){
         totalStar = 2
     }
 
@@ -87,7 +87,7 @@ fun LandscapeCard(
                 }
                 Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.CenterEnd){
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp), modifier = modifier.padding(end = 10.dp)) {
-                        Text(text = content.rating.toString(), style = MaterialTheme.typography.displayLarge, color = Color(android.graphics.Color.parseColor("#DB00FF")))
+                        Text(text = content.metacritic.toString(), style = MaterialTheme.typography.displayLarge, color = Color(android.graphics.Color.parseColor("#DB00FF")))
                         Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
                             repeat(5){
                                 if(it < totalStar){

@@ -21,4 +21,16 @@ class DetailViewModel(val gameDataUseCase: GameDataUseCase) : ViewModel() {
             }
         }
     }
+    fun updateGame(id: Int, favorit: Int){
+        var fav = 0
+        viewModelScope.launch {
+            if(favorit == 0){
+                fav = 1
+            }
+            else{
+                fav = 0
+            }
+            gameDataUseCase.updateGame(id, fav)
+        }
+    }
 }

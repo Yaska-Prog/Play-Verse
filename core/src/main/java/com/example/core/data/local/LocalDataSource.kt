@@ -15,4 +15,6 @@ class LocalDataSource(val gameDao: GameDao) {
     fun updateGame(game: GameEntity) = gameDao.updateGame(game)
 
     fun searchGame(title: String) = gameDao.getSearchedGame(title)
+    fun getLibrary(): Flow<List<GameEntity>> = gameDao.getLibrary()
+    fun updateFavorite(id: Int, favorite: Int) = gameDao.updateFavorite(id, favorite)
 }

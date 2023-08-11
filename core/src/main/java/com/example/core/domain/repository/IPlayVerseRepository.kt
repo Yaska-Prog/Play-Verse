@@ -9,4 +9,6 @@ interface IPlayVerseRepository {
     fun getGameData(): Flow<Output<List<GeneralGameEntity>>>
     fun getDetailGameData(id: Int): Flow<Output<DetailGameEntity>>
     fun getSearchData(word: String): Flow<Output<List<GeneralGameEntity>>>
+    fun getLibrary(): Flow<Output<List<GeneralGameEntity>>>
+    fun updateFavorite(id: Int, favorite: Int)
 }

@@ -7,5 +7,6 @@ data class DetailGameEntity(
     var platform: String?,
     var genre: String?,
     var publishers: String?,
-    var description: String?
+    var description: String?,
+    var favorited: Int
 )

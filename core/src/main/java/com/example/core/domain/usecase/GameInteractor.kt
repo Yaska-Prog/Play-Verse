@@ -19,4 +19,12 @@ class GameInteractor(val gameRepository: IPlayVerseRepository): GameDataUseCase 
     override fun searchGame(data: String): Flow<Output<List<GeneralGameEntity>>> {
         return gameRepository.getSearchData(word = data)
     }
+
+    override fun getLibrary(): Flow<Output<List<GeneralGameEntity>>> {
+        return gameRepository.getLibrary()
+    }
+
+    override fun updateGame(id: Int, favorite: Int) {
+        gameRepository.updateFavorite(id, favorite)
+    }
 }

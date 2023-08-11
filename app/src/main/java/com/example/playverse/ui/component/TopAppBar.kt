@@ -1,6 +1,8 @@
 package com.example.playverse.ui.component
 
+import android.content.Intent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -20,15 +22,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.playverse.R
 import com.example.playverse.ui.theme.PlayVerseTheme
+import android.net.Uri
+import androidx.compose.ui.platform.LocalContext
 
 @Composable
 fun TopAppBar(
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
     Box(modifier = modifier
         .fillMaxWidth()
         .height(70.dp)
-        .background(color = Color.Black),
+        .background(color = Color.Black)
+        .clickable {
+            val uri = Uri.parse("playverse://library")
+            context.startActivity(Intent(Intent.ACTION_VIEW, uri))
+        },
     contentAlignment = Alignment.Center){
         Row(
             verticalAlignment = Alignment.CenterVertically,

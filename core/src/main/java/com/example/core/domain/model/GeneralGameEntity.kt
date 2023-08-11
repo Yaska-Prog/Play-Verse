@@ -6,5 +6,6 @@ data class GeneralGameEntity(
     var title: String,
     var rating: Double,
     var releaseDate: String,
-    var metacritic: Int
+    var metacritic: Int,
+    var favorited: Int
 )

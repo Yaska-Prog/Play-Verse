@@ -10,4 +10,6 @@ interface GameDataUseCase {
     fun getHomeData(): Flow<Output<List<GeneralGameEntity>>>
     fun getDetailData(id: Int): Flow<Output<DetailGameEntity>>
     fun searchGame(data: String): Flow<Output<List<GeneralGameEntity>>>
+    fun getLibrary(): Flow<Output<List<GeneralGameEntity>>>
+    fun updateGame(id: Int, favorite: Int)
 }

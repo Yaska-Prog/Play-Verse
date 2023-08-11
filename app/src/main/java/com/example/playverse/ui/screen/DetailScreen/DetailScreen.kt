@@ -110,7 +110,9 @@ fun DetailScreen(
                     .fillMaxWidth(0.9f)
                     .padding(bottom = 10.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                     Text(text = "Detail", style = MaterialTheme.typography.titleLarge, color = Color.White)
-                    ButtonAddFavorite()
+                    ButtonAddFavorite(onClick = {
+                        detailViewModel.updateGame(id, game!!.favorited)
+                    }, favorited = game!!.favorited)
                 }
                 Text(text = game!!.title as String, style = MaterialTheme.typography.bodyLarge, color = Color.White)
                 Spacer(modifier = modifier.height(10.dp))

@@ -31,7 +31,8 @@ object DataMapper {
                 title = it.title,
                 rating = it.rating,
                 releaseDate = it.released,
-                metacritic = (it.metascore ?: (it.rating * 20.0).toInt())
+                metacritic = (it.metascore ?: (it.rating * 20.0).toInt()),
+                favorited = it.favorite
             )
         }
 
@@ -43,7 +44,8 @@ object DataMapper {
             description = input.description,
             genre = input.genre,
             platform = input.platform,
-            publishers = input.publishers
+            publishers = input.publishers,
+            favorited = input.favorite
         )
         return game
     }
