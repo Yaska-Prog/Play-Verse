@@ -34,7 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.playverse.R
-import com.example.playverse.core.domain.model.GeneralGameEntity
+import com.example.core.domain.model.GeneralGameEntity
 import com.example.playverse.ui.screen.HomeScreen.LandscapeCardContent
 import com.example.playverse.ui.theme.PlayVerseTheme
 

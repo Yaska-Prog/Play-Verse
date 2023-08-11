@@ -1,7 +1,7 @@
 package com.example.playverse.di
 
-import com.example.playverse.core.domain.usecase.GameDataUseCase
-import com.example.playverse.core.domain.usecase.GameInteractor
+import com.example.core.domain.usecase.GameDataUseCase
+import com.example.core.domain.usecase.GameInteractor
 import com.example.playverse.ui.screen.DetailScreen.DetailViewModel
 import com.example.playverse.ui.screen.HomeScreen.HomeViewmodel
 import com.example.playverse.ui.screen.SearchScreen.SearchViewModel

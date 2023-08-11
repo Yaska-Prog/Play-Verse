@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import com.example.playverse.R
 import com.example.playverse.ui.component.PurpleButton
 import com.example.playverse.ui.theme.PlayVerseTheme
-import com.example.playverse.ui.utils.PlayverseColors
 
 @Composable
 fun LandingScreen(

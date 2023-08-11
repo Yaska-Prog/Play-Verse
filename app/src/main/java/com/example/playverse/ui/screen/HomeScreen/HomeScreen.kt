@@ -37,12 +37,12 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.playverse.R
-import com.example.playverse.core.domain.model.GeneralGameEntity
-import com.example.playverse.core.domain.usecase.GameDataUseCase
+import com.example.core.domain.model.GeneralGameEntity
+import com.example.core.domain.usecase.GameDataUseCase
 import com.example.playverse.ui.component.LandscapeCard
 import com.example.playverse.ui.component.PortraitCard
 import com.example.playverse.ui.theme.PlayVerseTheme
-import com.example.playverse.ui.utils.Output
+import com.example.core.utils.Output
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.koin.androidx.compose.viewModel

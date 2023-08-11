@@ -2,9 +2,9 @@ package com.example.playverse.ui.screen.SearchScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.playverse.core.domain.model.GeneralGameEntity
-import com.example.playverse.core.domain.usecase.GameDataUseCase
-import com.example.playverse.ui.utils.Output
+import com.example.core.domain.model.GeneralGameEntity
+import com.example.core.domain.usecase.GameDataUseCase
+import com.example.core.utils.Output
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect

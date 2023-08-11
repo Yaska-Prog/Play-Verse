@@ -47,7 +47,6 @@ fun BottomNavigationBar(
     navController: NavHostController
 ) {
     val navStackBackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navStackBackEntry?.destination
     var selectedHome = false
     var selectedSearch = false
     val navBar = listOf<NavigationBarItem>(

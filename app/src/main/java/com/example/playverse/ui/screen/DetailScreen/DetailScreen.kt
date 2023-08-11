@@ -37,12 +37,12 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.playverse.core.domain.model.DetailGameEntity
+import com.example.core.domain.model.DetailGameEntity
 import com.example.playverse.ui.component.ButtonAddFavorite
 import com.example.playverse.ui.component.ScoreBox
 import com.example.playverse.ui.component.TopAppBar
 import com.example.playverse.ui.theme.PlayVerseTheme
-import com.example.playverse.ui.utils.Output
+import com.example.core.utils.Output
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

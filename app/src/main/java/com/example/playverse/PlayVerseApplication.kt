@@ -1,9 +1,9 @@
 package com.example.playverse
 
 import android.app.Application
-import com.example.playverse.core.di.databaseModule
-import com.example.playverse.core.di.networkModule
-import com.example.playverse.core.di.repositoryModule
+import com.example.core.di.databaseModule
+import com.example.core.di.networkModule
+import com.example.core.di.repositoryModule
 import com.example.playverse.di.usecaseModule
 import com.example.playverse.di.viewmodelModule
 import org.koin.android.ext.koin.androidContext

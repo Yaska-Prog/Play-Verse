@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.playverse.core.domain.model.GeneralGameEntity
+import com.example.core.domain.model.GeneralGameEntity
 import com.example.playverse.ui.screen.HomeScreen.LandscapeCardContent
 import com.example.playverse.ui.theme.PlayVerseTheme
 
@@ -23,7 +23,7 @@ fun PortraitCard(
     content: GeneralGameEntity,
     navigateToDetail: (Int) -> Unit
 ) {
-    val rating = content.metacritic?.div(100f)
+    val rating = content.metacritic.div(100f)
     Box(modifier = modifier
         .height(234.dp)
         .width(135.dp)

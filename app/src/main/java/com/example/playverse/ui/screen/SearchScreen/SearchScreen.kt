@@ -25,13 +25,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.playverse.core.domain.model.GeneralGameEntity
+import com.example.core.domain.model.GeneralGameEntity
 import com.example.playverse.ui.component.PortraitCard
 import com.example.playverse.ui.component.SearchBar
 import com.example.playverse.ui.component.TopAppBar
 import com.example.playverse.ui.screen.HomeScreen.LandscapeCardContent
 import com.example.playverse.ui.theme.PlayVerseTheme
-import com.example.playverse.ui.utils.Output
+import com.example.core.utils.Output
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -65,7 +65,7 @@ fun SearchScreen(
                 horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(modifier = modifier.height(10.dp))
                 SearchBar(text = text, onValueChange = {text = it}, onEnterClick = {
-                    searchViewModel.getSearchResult("% ${text} %")
+                    searchViewModel.getSearchResult("${text}%")
                 })
                 Spacer(modifier = modifier.height(20.dp))
                 LazyVerticalGrid(
