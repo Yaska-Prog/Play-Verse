@@ -72,7 +72,6 @@ fun OnboardingLayout(
                 PagerIndicator(size = items.size, currentPage = pagerState.currentPage)
             }
         }
-
     }
 }
 
@@ -97,6 +96,5 @@ fun PagerIndicator(
                   .background(Color.White))
           }
       }
-      
   }  
 }

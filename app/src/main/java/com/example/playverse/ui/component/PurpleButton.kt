@@ -2,6 +2,7 @@ package com.example.playverse.ui.component
 
 import android.graphics.drawable.Icon
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -27,7 +28,8 @@ import com.example.playverse.ui.theme.PlayVerseTheme
 fun PurpleButton(
     modifier: Modifier = Modifier,
     text: String,
-    icon: ImageVector? = null
+    icon: ImageVector? = null,
+    onClick: () -> Unit
 ) {
     Box(
         modifier = modifier
@@ -39,7 +41,8 @@ fun PurpleButton(
                         Color(android.graphics.Color.parseColor("#E7698E"))
                     )
                 )
-            ), 
+            )
+            .clickable { onClick() },
         contentAlignment = Alignment.Center
         ){
         Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = modifier.padding(10.dp)) {
@@ -59,6 +62,6 @@ fun PurpleButton(
 @Composable
 fun PurpleButtonPreview() {
     PlayVerseTheme {
-        PurpleButton(text = "Get Started!")
+//        PurpleButton(text = "Get Started!")
     }
 }

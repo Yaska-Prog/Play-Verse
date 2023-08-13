@@ -12,6 +12,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,10 +25,12 @@ import androidx.compose.ui.unit.dp
 import com.example.playverse.R
 import com.example.playverse.ui.component.PurpleButton
 import com.example.playverse.ui.theme.PlayVerseTheme
+import kotlinx.coroutines.delay
 
 @Composable
 fun LandingScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onComplete: () -> Unit
 ) {
     Box(modifier = modifier
         .fillMaxSize()
@@ -63,12 +66,10 @@ fun LandingScreen(
                 modifier = modifier.padding(top = 8.dp))
             }
         }
-        Box(modifier = modifier
-            .align(alignment = Alignment.BottomCenter)
-            .padding(bottom = 40.dp),
-        contentAlignment = Alignment.Center){
-            PurpleButton(text = "Get Started!")
-        }
+    }
+    LaunchedEffect(Unit){
+        delay(3000)
+        onComplete()
     }
 }
 
@@ -76,6 +77,6 @@ fun LandingScreen(
 @Composable
 fun LandingScreenPreview() {
     PlayVerseTheme {
-        LandingScreen()
+//        LandingScreen()
     }
 }
